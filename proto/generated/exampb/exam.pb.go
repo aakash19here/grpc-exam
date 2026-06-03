@@ -380,11 +380,11 @@ const file_exam_proto_rawDesc = "" +
 	"\x18StreamExamResultsRequest\x12\x1d\n" +
 	"\n" +
 	"student_id\x18\x01 \x01(\tR\tstudentId\x12\x19\n" +
-	"\bexam_ids\x18\x02 \x03(\tR\aexamIds2\xce\x02\n" +
+	"\bexam_ids\x18\x02 \x03(\tR\aexamIds2\xcf\x02\n" +
 	"\vExamService\x12H\n" +
 	"\rGetExamResult\x12\x1a.exam.GetExamResultRequest\x1a\x1b.exam.GetExamResultResponse\x12R\n" +
-	"\x11StreamExamResults\x12\x1e.exam.StreamExamResultsRequest\x1a\x1b.exam.GetExamResultResponse0\x01\x12S\n" +
-	"\x10SubitExamResults\x12\x1d.exam.SubmitExamResultRequest\x1a\x1e.exam.SubmitExamResultResponse(\x01\x12L\n" +
+	"\x11StreamExamResults\x12\x1e.exam.StreamExamResultsRequest\x1a\x1b.exam.GetExamResultResponse0\x01\x12T\n" +
+	"\x11SubmitExamResults\x12\x1d.exam.SubmitExamResultRequest\x1a\x1e.exam.SubmitExamResultResponse(\x01\x12L\n" +
 	"\rLiveExamQuery\x12\x1a.exam.GetExamResultRequest\x1a\x1b.exam.GetExamResultResponse(\x010\x01B\x12Z\x10generated/exampbb\x06proto3"
 
 var (
@@ -410,11 +410,11 @@ var file_exam_proto_goTypes = []any{
 var file_exam_proto_depIdxs = []int32{
 	0, // 0: exam.ExamService.GetExamResult:input_type -> exam.GetExamResultRequest
 	4, // 1: exam.ExamService.StreamExamResults:input_type -> exam.StreamExamResultsRequest
-	2, // 2: exam.ExamService.SubitExamResults:input_type -> exam.SubmitExamResultRequest
+	2, // 2: exam.ExamService.SubmitExamResults:input_type -> exam.SubmitExamResultRequest
 	0, // 3: exam.ExamService.LiveExamQuery:input_type -> exam.GetExamResultRequest
 	1, // 4: exam.ExamService.GetExamResult:output_type -> exam.GetExamResultResponse
 	1, // 5: exam.ExamService.StreamExamResults:output_type -> exam.GetExamResultResponse
-	3, // 6: exam.ExamService.SubitExamResults:output_type -> exam.SubmitExamResultResponse
+	3, // 6: exam.ExamService.SubmitExamResults:output_type -> exam.SubmitExamResultResponse
 	1, // 7: exam.ExamService.LiveExamQuery:output_type -> exam.GetExamResultResponse
 	4, // [4:8] is the sub-list for method output_type
 	0, // [0:4] is the sub-list for method input_type

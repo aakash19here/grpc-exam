@@ -21,7 +21,7 @@ const _ = grpc.SupportPackageIsVersion9
 const (
 	ExamService_GetExamResult_FullMethodName     = "/exam.ExamService/GetExamResult"
 	ExamService_StreamExamResults_FullMethodName = "/exam.ExamService/StreamExamResults"
-	ExamService_SubitExamResults_FullMethodName  = "/exam.ExamService/SubitExamResults"
+	ExamService_SubmitExamResults_FullMethodName = "/exam.ExamService/SubmitExamResults"
 	ExamService_LiveExamQuery_FullMethodName     = "/exam.ExamService/LiveExamQuery"
 )
 
@@ -31,7 +31,7 @@ const (
 type ExamServiceClient interface {
 	GetExamResult(ctx context.Context, in *GetExamResultRequest, opts ...grpc.CallOption) (*GetExamResultResponse, error)
 	StreamExamResults(ctx context.Context, in *StreamExamResultsRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[GetExamResultResponse], error)
-	SubitExamResults(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[SubmitExamResultRequest, SubmitExamResultResponse], error)
+	SubmitExamResults(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[SubmitExamResultRequest, SubmitExamResultResponse], error)
 	LiveExamQuery(ctx context.Context, opts ...grpc.CallOption) (grpc.BidiStreamingClient[GetExamResultRequest, GetExamResultResponse], error)
 }
 
@@ -72,9 +72,9 @@ func (c *examServiceClient) StreamExamResults(ctx context.Context, in *StreamExa
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
 type ExamService_StreamExamResultsClient = grpc.ServerStreamingClient[GetExamResultResponse]
 
-func (c *examServiceClient) SubitExamResults(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[SubmitExamResultRequest, SubmitExamResultResponse], error) {
+func (c *examServiceClient) SubmitExamResults(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[SubmitExamResultRequest, SubmitExamResultResponse], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	stream, err := c.cc.NewStream(ctx, &ExamService_ServiceDesc.Streams[1], ExamService_SubitExamResults_FullMethodName, cOpts...)
+	stream, err := c.cc.NewStream(ctx, &ExamService_ServiceDesc.Streams[1], ExamService_SubmitExamResults_FullMethodName, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -83,7 +83,7 @@ func (c *examServiceClient) SubitExamResults(ctx context.Context, opts ...grpc.C
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type ExamService_SubitExamResultsClient = grpc.ClientStreamingClient[SubmitExamResultRequest, SubmitExamResultResponse]
+type ExamService_SubmitExamResultsClient = grpc.ClientStreamingClient[SubmitExamResultRequest, SubmitExamResultResponse]
 
 func (c *examServiceClient) LiveExamQuery(ctx context.Context, opts ...grpc.CallOption) (grpc.BidiStreamingClient[GetExamResultRequest, GetExamResultResponse], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
@@ -104,7 +104,7 @@ type ExamService_LiveExamQueryClient = grpc.BidiStreamingClient[GetExamResultReq
 type ExamServiceServer interface {
 	GetExamResult(context.Context, *GetExamResultRequest) (*GetExamResultResponse, error)
 	StreamExamResults(*StreamExamResultsRequest, grpc.ServerStreamingServer[GetExamResultResponse]) error
-	SubitExamResults(grpc.ClientStreamingServer[SubmitExamResultRequest, SubmitExamResultResponse]) error
+	SubmitExamResults(grpc.ClientStreamingServer[SubmitExamResultRequest, SubmitExamResultResponse]) error
 	LiveExamQuery(grpc.BidiStreamingServer[GetExamResultRequest, GetExamResultResponse]) error
 	mustEmbedUnimplementedExamServiceServer()
 }
@@ -122,8 +122,8 @@ func (UnimplementedExamServiceServer) GetExamResult(context.Context, *GetExamRes
 func (UnimplementedExamServiceServer) StreamExamResults(*StreamExamResultsRequest, grpc.ServerStreamingServer[GetExamResultResponse]) error {
 	return status.Error(codes.Unimplemented, "method StreamExamResults not implemented")
 }
-func (UnimplementedExamServiceServer) SubitExamResults(grpc.ClientStreamingServer[SubmitExamResultRequest, SubmitExamResultResponse]) error {
-	return status.Error(codes.Unimplemented, "method SubitExamResults not implemented")
+func (UnimplementedExamServiceServer) SubmitExamResults(grpc.ClientStreamingServer[SubmitExamResultRequest, SubmitExamResultResponse]) error {
+	return status.Error(codes.Unimplemented, "method SubmitExamResults not implemented")
 }
 func (UnimplementedExamServiceServer) LiveExamQuery(grpc.BidiStreamingServer[GetExamResultRequest, GetExamResultResponse]) error {
 	return status.Error(codes.Unimplemented, "method LiveExamQuery not implemented")
@@ -178,12 +178,12 @@ func _ExamService_StreamExamResults_Handler(srv interface{}, stream grpc.ServerS
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
 type ExamService_StreamExamResultsServer = grpc.ServerStreamingServer[GetExamResultResponse]
 
-func _ExamService_SubitExamResults_Handler(srv interface{}, stream grpc.ServerStream) error {
-	return srv.(ExamServiceServer).SubitExamResults(&grpc.GenericServerStream[SubmitExamResultRequest, SubmitExamResultResponse]{ServerStream: stream})
+func _ExamService_SubmitExamResults_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(ExamServiceServer).SubmitExamResults(&grpc.GenericServerStream[SubmitExamResultRequest, SubmitExamResultResponse]{ServerStream: stream})
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type ExamService_SubitExamResultsServer = grpc.ClientStreamingServer[SubmitExamResultRequest, SubmitExamResultResponse]
+type ExamService_SubmitExamResultsServer = grpc.ClientStreamingServer[SubmitExamResultRequest, SubmitExamResultResponse]
 
 func _ExamService_LiveExamQuery_Handler(srv interface{}, stream grpc.ServerStream) error {
 	return srv.(ExamServiceServer).LiveExamQuery(&grpc.GenericServerStream[GetExamResultRequest, GetExamResultResponse]{ServerStream: stream})
@@ -211,8 +211,8 @@ var ExamService_ServiceDesc = grpc.ServiceDesc{
 			ServerStreams: true,
 		},
 		{
-			StreamName:    "SubitExamResults",
-			Handler:       _ExamService_SubitExamResults_Handler,
+			StreamName:    "SubmitExamResults",
+			Handler:       _ExamService_SubmitExamResults_Handler,
 			ClientStreams: true,
 		},
 		{
