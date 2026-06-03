@@ -6,9 +6,9 @@ option go_package = "generated/exampb";
 
 service ExamService {
     rpc GetExamResult(GetExamResultRequest) returns (GetExamResultResponse); //unary
-    rpc StreamExamResults(StreamExamResultsRequest) returns (stream GetExamResultResponse) // server streaming
-    rpc SubitExamResults(stream SubmitExamResultRequest) returns (SubmitExamResultResponse) // client streaming
-    rpc LiveExamQuery(stream GetExamResultRequest) returns (stream GetExamResultResponse) // bidi
+    rpc StreamExamResults(StreamExamResultsRequest) returns (stream GetExamResultResponse); // server streaming
+    rpc SubitExamResults(stream SubmitExamResultRequest) returns (SubmitExamResultResponse); // client streaming
+    rpc LiveExamQuery(stream GetExamResultRequest) returns (stream GetExamResultResponse); // bidi
 }
 
 message GetExamResultRequest { 
