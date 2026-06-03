@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package exam;
+
+option go_package = "generated/exampb";
+
+service ExamService {
+    rpc GetExamResult(GetExamResultRequest) returns (GetExamResultResponse); //unary
+    rpc StreamExamResults(StreamExamResultsRequest) returns (stream GetExamResultResponse) // server streaming
+    rpc SubitExamResults(stream SubmitExamResultRequest) returns (SubmitExamResultResponse) // client streaming
+    rpc LiveExamQuery(stream GetExamResultRequest) returns (stream GetExamResultResponse) // bidi
+}
+
+message GetExamResultRequest { 
+  string student_id = 1;
+  string exam_id = 2;
+}
+
+message GetExamResultResponse {
+  string student_name = 1;
+  string subject = 2;
+  int32 marks_obtained = 3;
+  int32 total_marks = 4;
+  string grade = 5;
+}
+
+message SubmitExamResultRequest {
+  string student_id = 1;
+  string subject = 2;
+  int32 marks_obtained = 3;
+  int32 total_marks = 4;
+}
+
+message SubmitExamResultResponse {
+  string student_id = 1;
+  int32 total_exams = 2;
+  int32 total_marks_obtained = 3;
+  int32 total_possible_marks = 4;
+  float average_percentage = 5;
+}
+
+message StreamExamResultsRequest {
+  string student_id = 1;
+  repeated string exam_ids = 2;
+}
