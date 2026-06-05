@@ -40,6 +40,6 @@ func main() {
 	case "client":
 		clients.Client_Streaming(client)
 	case "bidi":
-		//call unary here
+		clients.Bidi(client)
 	}
 }
