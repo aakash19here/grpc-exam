@@ -38,7 +38,7 @@ func main() {
 	case "server":
 		clients.Server_stream(client)
 	case "client":
-		//call unary here
+		clients.Client_Streaming(client)
 	case "bidi":
 		//call unary here
 	}
